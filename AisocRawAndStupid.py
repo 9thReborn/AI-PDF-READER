@@ -7,6 +7,10 @@ import faiss
 import numpy as np
 import tempfile
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 
 def initialize_groq(api_key):
@@ -166,16 +170,16 @@ def process_document(uploaded_file, groq_client, embedding_model):
 with st.sidebar:
     st.title("📄 PDF Q&A")
     st.caption("Powered by Groq + local embeddings")
-    st.caption("Get a free key https://console.groq.com/keys")
 
     st.divider()
 
-    groq_api_key = st.text_input(
-        "Groq API Key",
-        value="",
-        type="password",
-        help="Get a free key → https://console.groq.com/keys"
-    )
+    # Get API key from environment variable
+    groq_api_key = os.getenv("GROQ_API_KEY")
+    
+    if not groq_api_key:
+        st.error("⚠️ Groq API key not found!")
+        st.info("Please set the GROQ_API_KEY environment variable or add it to your .env file")
+        st.stop()
 
     model_options = {
         "llama-3.1-8b-instant": "Llama 3.1 8B  •  fast",
