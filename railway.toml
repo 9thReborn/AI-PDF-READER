@@ -2,7 +2,12 @@
 builder = "NIXPACKS"
 
 [deploy]
-startCommand = "streamlit run AisocRawAndStupid.py --server.port $PORT --server.headless true --server.runOnSave false"
+startCommand = "streamlit run AisocRawAndStupid.py --server.port $PORT --server.headless true --server.runOnSave false --client.hideMenuButton true"
 healthcheckPath = "/"
 healthcheckTimeout = 300
 restartPolicyType = "ON_FAILURE"
+
+[env]
+STREAMLIT_LOGGER_LEVEL = "error"
+PYTHONUNBUFFERED = "1"
+PIP_NO_CACHE_DIR = "1"
