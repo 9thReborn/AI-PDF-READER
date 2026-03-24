@@ -1,8 +1,8 @@
 import streamlit as st
 from groq import Groq
 from sentence_transformers import SentenceTransformer
-from langchain_community.document_loaders import PyPDFLoader 
-from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_community.document_loaders import PyPDFLoader
+from langchain_community.text_splitters import RecursiveCharacterTextSplitter
 import faiss
 import numpy as np
 import tempfile
